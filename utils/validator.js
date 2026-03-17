@@ -61,5 +61,9 @@ module.exports = {
         body('role').isEmpty().withMessage("role khong duoc thay doi"),
         body('avatarUrl').optional().isArray().withMessage("avatarURl pahi la 1 mang"),
         body('avatarUrl.*').isURL().withMessage("URL khong hop le"),
+    ],
+    InventoryQuantityValidator: [
+        body('product').notEmpty().withMessage("product khong duoc de trong").bail().isMongoId().withMessage("product phai la ID"),
+        body('quantity').notEmpty().withMessage("quantity khong duoc de trong").bail().isFloat({ gt: 0 }).withMessage("quantity phai lon hon 0").toFloat()
     ]
 }
